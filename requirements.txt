@@ -1,0 +1,6 @@
+Flask @ file:///C:/b/abs_f9w7doyu0h/croot/flask_1716545924884/work
+pandas @ file:///C:/b/abs_9aotnvvz16/croot/pandas_1718308978393/work/dist/pandas-2.2.2-cp312-cp312-win_amd64.whl#sha256=93959056e02e9855025011adb18394296a58d49e72b9342733b7693a5267c790
+torch==2.5.1
+requests @ file:///C:/b/abs_9c5n24p1y7/croot/requests_1716902867639/work
+librosa==0.10.2.post1
+transformers==4.47.0

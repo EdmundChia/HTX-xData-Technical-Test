@@ -17,4 +17,4 @@ EXPOSE 8001
 ENV PYTHONUNBUFFERED=1
 
 # Run asr_api.py when the container launches
-CMD ["python", "asr_api.py"]
+CMD ["python", "asr/asr_api.py"]

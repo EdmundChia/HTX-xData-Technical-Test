@@ -51,9 +51,9 @@ def main():
     # Add new columns and save updated CSV
     df["generated_text"] = transcriptions
     df["duration"] = durations
-    output_csv = "common_voice/cv-valid-dev-updated.csv"
-    df.to_csv(output_csv, index=False)
-    print(f"Updated CSV saved to {output_csv}")
+    # output_csv = "common_voice/cv-valid-dev-updated.csv"
+    df.to_csv(CSV_FILE, index=False)
+    print(f"Updated CSV saved to {CSV_FILE}")
 
 if __name__ == "__main__":
     main()

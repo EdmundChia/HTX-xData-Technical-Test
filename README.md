@@ -4,10 +4,10 @@ cd asr
 
 put common_voice folder with mp3s in here
 
-asr
-asr/common_voice
-asr/common_voice/cv-valid-dev.csv
-asr/common_voice/cv-valid-dev/cv-valid-dev/...mp3
+asr 
+-asr/common_voice
+-asr/common_voice/cv-valid-dev.csv
+-asr/common_voice/cv-valid-dev/cv-valid-dev/...mp3
 
 
 docker build -t asr-api.py

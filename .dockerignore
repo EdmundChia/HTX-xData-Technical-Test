@@ -1,4 +1,4 @@
-asr/common_voice/
-*.zip
-*.csv
-*.mp3
+# asr/common_voice/
+# *.zip
+# *.csv
+# *.mp3

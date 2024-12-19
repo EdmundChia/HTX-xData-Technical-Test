@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  search-ui:
+    image: elastic/search-ui:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - SEARCH_API_URL=https://elasticsearch:9200  # Replace with your actual Elasticsearch container URL or endpoint
+      - SEARCH_INDEX=cv-transcriptions  # Replace with the name of your index
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.17.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - default
+
+volumes:
+  elasticsearch-data:
+    driver: local
+
+networks:
+  default:
+    driver: bridge

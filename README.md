@@ -2,7 +2,7 @@ local use
 
 cd asr
 
-put common_voice folder with mp3s in here
+download and put common_voice folder with mp3s in here
 
 asr 
 -asr/common_voice

@@ -5,7 +5,7 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Copy only the necessary files: asr_api.py and requirements.txt
-COPY asr/asr_api.py /app/asr/
+COPY asr_api.py /app/asr/
 COPY requirements.txt /app/
 
 # Install dependencies

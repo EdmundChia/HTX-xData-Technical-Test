@@ -1,2 +1,4 @@
 common_voice.zip
 /asr/common_voice
+.env
+.crt

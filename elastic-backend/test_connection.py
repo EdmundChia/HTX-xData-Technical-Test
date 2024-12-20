@@ -11,8 +11,7 @@ ELASTIC_PASSWORD = os.getenv('ELASTIC_PASSWORD')
 
 # Elasticsearch connection
 es = Elasticsearch(
-    "https://localhost:9200",
-    ca_certs="ca.crt",
+    "http://localhost:9200",
     basic_auth=("elastic", ELASTIC_PASSWORD)
 )
 

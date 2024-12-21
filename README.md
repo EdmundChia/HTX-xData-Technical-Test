@@ -29,6 +29,10 @@ Task 4
 
 cd ../elastic-backend
 
+install elastic search if not installed
+
+python -m pip install elasticsearch
+
 docker compose up -d 
 
 <!-- docker cp elastic-backend-es01-1:/usr/share/elasticsearch/config/certs/ca/ca.crt ./ca.crt -->

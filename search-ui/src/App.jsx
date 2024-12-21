@@ -1,6 +1,19 @@
-import React, { useEffect, useState } from "react"; 
+import React from "react";
 import ElasticsearchAPIConnector from "@elastic/search-ui-elasticsearch-connector";
-import { SearchDriver } from "@elastic/search-ui";
+import {
+  ErrorBoundary,
+  Facet,
+  SearchProvider,
+  SearchBox,
+  Results,
+  PagingInfo,
+  ResultsPerPage,
+  Paging,
+  Sorting,
+  WithSearch
+} from "@elastic/react-search-ui";
+import { Layout } from "@elastic/react-search-ui-views";
+import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import "./App.css";
 
 const connector = new ElasticsearchAPIConnector({
@@ -15,65 +28,106 @@ const connector = new ElasticsearchAPIConnector({
 });
 
 const config = {
-  apiConnector: connector,
   searchQuery: {
     search_fields: {
-      generated_text: { weight: 3 },
-      duration: { weight: 1 },
-      age: { weight: 1 },
-      gender: { weight: 1 },
-      accent: { weight: 1 },
+      "generated_text": { weight: 3 },
+      "text": { weight: 2 },
+      "filename": { weight: 2 },
+      "accent": { weight: 1 },
+      "age": { weight: 1 },
+      "gender": { weight: 1 }
     },
     result_fields: {
+      filename: { raw: {} },
       generated_text: { raw: {} },
+      text: { raw: {} },
       duration: { raw: {} },
       age: { raw: {} },
       gender: { raw: {} },
       accent: { raw: {} },
+      // up_votes: { raw: {} },
+      // down_votes: { raw: {} }
     },
+    disjunctiveFacets: ["accent.keyword", "age.keyword", "gender.keyword"],
+    facets: {
+      "accent.keyword": { type: "value" },
+      "age.keyword": { type: "value" },
+      "gender.keyword": { type: "value" },
+      "duration": {
+        type: "range",
+        ranges: [
+          { from: 0, to: 4, name: "0-4s" },
+          { from: 5, to: 9, name: "5-9s" },
+          { from: 10, to: 14, name: "10-14s" },
+          { from: 15, to: 19, name: "15-19s" },
+          { from: 20, name: "20s+" }
+        ]
+      }
+    }
   },
+  autocompleteQuery: {
+    results: {
+      resultsPerPage: 5,
+      search_fields: {
+        "generated_text": { weight: 3 },
+        "text": { weight: 2 },
+        "filename": { weight: 2 }
+      },
+      result_fields: {
+        generated_text: { snippet: { size: 100, fallback: true } },
+        text: { snippet: { size: 100, fallback: true } },
+        filename: { raw: {} }
+      }
+    }
+  },
+  apiConnector: connector,
+  alwaysSearchOnInitialLoad: true
 };
 
-const driver = new SearchDriver(config);
-
-function App() {
-  const [results, setResults] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = driver.subscribeToStateChanges((state) => {
-      if (state.results) {
-        setResults(state.results);
-      }
-      if (state.error) {
-        setError(state.error);
-      }
-    });
-  
-    // Trigger a search action
-    driver.getActions().setSearchTerm("");
-  
-    // Remove this line as no unsubscribe function is returned
-  }, []);
-  
-
+export default function App() {
   return (
-    <div>
-      <h1>Search Results</h1>
-      {error && <p>Error: {error.message}</p>}
-      <ul>
-        {results.map((result, index) => (
-          <li key={index}>
-            <p><strong>Generated Text:</strong> {result.generated_text?.raw ? result.generated_text.raw : "No text available"}</p>
-            <p><strong>Duration:</strong> {result.duration?.raw ? result.duration.raw : "No text available"}s</p>
-            <p><strong>Age:</strong> {result.age?.raw ? result.age.raw : "No text available"}</p>
-            <p><strong>Gender:</strong>  {result.gender?.raw ? result.gender.raw : "No text available"}</p>
-            <p><strong>Accent:</strong> {result.accent?.raw ? result.accent.raw : "No text available"}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <SearchProvider config={config}>
+      <WithSearch mapContextToProps={({ wasSearched }) => ({ wasSearched })}>
+        {({ wasSearched }) => (
+          <div className="App">
+            <ErrorBoundary>
+              <Layout
+                header={
+                  <SearchBox
+                    autocompleteMinimumCharacters={3}
+                    autocompleteResults={{
+                      linkTarget: "_blank",
+                      sectionTitle: "Results",
+                      titleField: "filename",
+                      urlField: "url",
+                      shouldTrackClickThrough: true,
+                    }}
+                    autocompleteSuggestions={true}
+                    debounceLength={0}
+                  />
+                }
+                sideContent={
+                  <div>
+                    {wasSearched && <Sorting label={"Sort by"} sortOptions={[]} />}
+                    <Facet key={"1"} field={"accent.keyword"} label={"Accent"} />
+                    <Facet key={"2"} field={"age.keyword"} label={"Age"} />
+                    <Facet key={"3"} field={"gender.keyword"} label={"Gender"} />
+                    <Facet key={"4"} field={"duration"} label={"Duration"} />
+                  </div>
+                }
+                bodyContent={<Results shouldTrackClickThrough={true} />}
+                bodyHeader={
+                  <React.Fragment>
+                    {wasSearched && <PagingInfo />}
+                    {wasSearched && <ResultsPerPage />}
+                  </React.Fragment>
+                }
+                bodyFooter={<Paging />}
+              />
+            </ErrorBoundary>
+          </div>
+        )}
+      </WithSearch>
+    </SearchProvider>
   );
 }
-
-export default App;

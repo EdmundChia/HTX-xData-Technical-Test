@@ -25,3 +25,9 @@ docker compose up -d
 docker cp elastic-backend-es01-1:/usr/share/elasticsearch/config/certs/ca/ca.crt ./ca.crt
 
 python cv-index.py
+
+cd ../search-ui
+
+docker-compose up --build
+
+navigate to http://localhost:3000/

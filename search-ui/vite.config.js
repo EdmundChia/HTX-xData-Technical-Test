@@ -8,6 +8,10 @@ export default defineConfig({
     proxy: {
       '/cv-transcriptions': 'http://localhost:9200', // Proxy for your Elasticsearch endpoint
     },
-    port: 3000 // Change here if needed
+    // proxy: {
+    //   '/cv-transcriptions': 'http://host.docker.internal:9200', // Proxy for your Elasticsearch endpoint
+    // },
+    host: '0.0.0.0',
+    port: 3000,
   },
 })

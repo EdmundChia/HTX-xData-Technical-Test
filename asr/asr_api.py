@@ -30,7 +30,7 @@ def asr():
     audio_input, sr = librosa.load(io.BytesIO(audio_bytes), sr=16000)  # sr=16000 to match Wav2Vec2 model's expected sample rate
 
     # Tokenize the audio input
-    input_values = processor(audio_input, return_tensors="pt", padding="longest").input_values  # Batch size 1
+    input_values = processor(audio_input, return_tensors="pt", padding="longest", sampling_rate=16000).input_values  # Batch size 1
     
     # Retrieve logits from the model
     logits = model(input_values).logits

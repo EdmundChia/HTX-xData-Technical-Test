@@ -10,7 +10,7 @@ asr
 -asr/common_voice/cv-valid-dev/cv-valid-dev/...mp3
 
 
-docker build -t asr-api.py
+docker build -t asr-api.py .
 
 docker run -p 8001:8001 asr-api
 

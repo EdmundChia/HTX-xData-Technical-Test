@@ -16,7 +16,7 @@ docker run --name asr-api -p 8001:8001 asr-api
 
 python cv-decode.py
 
-docker compose down (to save CPU/RAM)
+(after done, close and delete asr-api container to save CPU/RAM)
 
 cd ../elastic-backend
 

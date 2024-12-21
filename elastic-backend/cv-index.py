@@ -24,7 +24,7 @@ es = Elasticsearch(
 
 # Constants
 INDEX_NAME = 'cv-transcriptions'
-CV_FILEPATH = '../asr/common_voice/cv-valid-dev-updated.csv'
+CV_FILEPATH = '../asr/common_voice/cv-valid-dev.csv'
 
 def bulk_generator(df):
     for i, row in df.iterrows():

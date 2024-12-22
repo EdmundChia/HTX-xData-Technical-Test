@@ -1,0 +1,34 @@
+aws ec2 create-key-pair --key-name my-ec2-key --query 'KeyMaterial' --output text > my-ec2-key.pem
+
+# Create security group
+aws ec2 create-security-group --group-name elasticsearch-sg --description "Security group for Elasticsearch deployment"
+
+# Store the security group ID (you'll need this)
+aws ec2 describe-security-groups --group-names elasticsearch-sg --query 'SecurityGroups[0].GroupId' --output text
+<!-- sg-04bbc96491c58c919 -->
+
+# SSH access
+aws ec2 authorize-security-group-ingress --group-id sg-04bbc96491c58c919 --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+# Elasticsearch
+aws ec2 authorize-security-group-ingress --group-id sg-04bbc96491c58c919 --protocol tcp --port 9200 --cidr 0.0.0.0/0
+
+# Kibana
+aws ec2 authorize-security-group-ingress --group-id sg-04bbc96491c58c919 --protocol tcp --port 5601 --cidr 0.0.0.0/0
+
+# React app
+aws ec2 authorize-security-group-ingress --group-id sg-04bbc96491c58c919 --protocol tcp --port 3000 --cidr 0.0.0.0/0
+
+# First, get the latest Amazon Linux 2023 AMI ID
+aws ec2 describe-images --owners amazon --filters "Name=name,Values=al2023-ami-2023*" "Name=architecture,Values=x86_64" --query 'sort_by(Images, &CreationDate)[-1].ImageId' --output text
+
+# Launch the instance (replace AMI_ID with the ID you got above)
+aws ec2 run-instances --image-id ami-0995922d49dc9a17d --instance-type t2.micro --key-name my-ec2-key --security-group-ids sg-04bbc96491c58c919 --count 1 --associate-public-ip-address
+
+# Get your instance ID (save this)
+aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[0].InstanceId' --output text
+<!-- i-0c53ad5f2a5a28431 -->
+
+# Get your public IP (save this)
+aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
+<!-- 3.0.139.66 -->

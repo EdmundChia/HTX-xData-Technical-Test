@@ -16,13 +16,18 @@ import { Layout } from "@elastic/react-search-ui-views";
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import "./App.css";
 
+const elasticPassword = process.env.ELASTIC_PASSWORD;
+const host = process.env.HOST;
+const username = process.env.USERNAME;
+
+
 const connector = new ElasticsearchAPIConnector({
-  host: "http://localhost:9200",
+  host: host,
   index: "cv-transcriptions",
   connectionOptions: {
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Basic " + btoa("elastic:aquila"),
+      Authorization: "Basic " + btoa(`${username}:${elasticPassword}`),
     },
   },
 });

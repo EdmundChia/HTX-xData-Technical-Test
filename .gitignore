@@ -1,9 +1,9 @@
 common_voice.zip
 /asr/common_voice
-# *.env
+*.env
 *.crt
 /app-search-reference-ui-react-master
 *.pem
-/aws-deploy
 .odt
 /asr/venv
+aws-deploy/temp cmd

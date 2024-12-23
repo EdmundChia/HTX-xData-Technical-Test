@@ -45,8 +45,9 @@ docker run --name asr-api -p 8001:8001 asr-api
 ```
 
 ## Run Decoder Script
-Execute the CV decoder script:
+Execute the CV decoder script in another terminal:
 ```bash
+cd asr
 python cv-decode.py
 ```
 
@@ -61,32 +62,9 @@ When you're done, deactivate the virtual environment:
 deactivate
 ```
 
-Task 2
-
-cd asr
-
-download and put common_voice folder with mp3s in here
-
-asr 
--asr/common_voice
--asr/common_voice/cv-valid-dev.csv
--asr/common_voice/cv-valid-dev/cv-valid-dev/...mp3
-
-docker build -t asr-api .
-
-docker run --name asr-api -p 8001:8001 asr-api
-
-install python and pandas if not installed
-
-pip install pandas
-
-python cv-decode.py
-
-(after done, close and delete asr-api container to save CPU/RAM)
-
 Task 3
 
-
+Design.pdf in deployment-design folder
 
 Task 4
 

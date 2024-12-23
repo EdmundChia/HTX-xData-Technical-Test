@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   react-vite-app:
     build: .  # Build the app from the Dockerfile in the current directory

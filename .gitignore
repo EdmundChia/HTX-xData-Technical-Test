@@ -4,3 +4,4 @@ common_voice.zip
 *.crt
 /app-search-reference-ui-react-master
 *.pem
+/aws-deploy

@@ -1,41 +1,51 @@
-# Task 2: Setting Up and Running ASR API
+# Task 2 Setup Instructions
 
-This guide will help you set up the environment, install dependencies, build and run the Docker container, and execute the Python script for the ASR API.
+## Environment Setup
 
-## Step 1: Create a Python Environment
-
-First, create and activate a Python 3.9 environment using either `venv` (Python's built-in virtual environment tool) or `conda` (for Conda environments).
-
-### Using `venv` (Python's built-in virtual environment tool):
-
-Run the following commands in your terminal:
-
+Create and activate Python virtual environment:
 ```bash
-# Create a virtual environment
-python3.9 -m venv env
+# Create virtual environment
+python -m venv venv
 
-# Activate the virtual environment (Windows)
-.\env\Scripts\activate
+# Activate virtual environment
+# For Windows
+venv\Scripts\activate
+# For macOS/Linux
+source venv/bin/activate
+```
 
-# Activate the virtual environment (macOS/Linux)
-source env/bin/activate
-\
-
-# Using `conda` (Conda environment):
-conda create --name asr-env python=3.9
-conda activate asr-env
-
-# Step 2: Install Required Packages
+## Install Required Packages
+```bash
 pip install flask transformers librosa requests torch pandas
+```
 
-# Step 3: Build the Docker Image
+## Docker Commands
+Build the Docker image:
+```bash
 docker build -t asr-api .
+```
 
-# Step 4: Run the Docker Container
+Run the Docker container:
+```bash
 docker run --name asr-api -p 8001:8001 asr-api
+```
 
-# Step 5: Run the Python Script
+## Run Decoder Script
+Execute the CV decoder script:
+```bash
 python cv-decode.py
+```
+
+## Order of Operations
+1. Set up virtual environment and install packages
+2. Build Docker image
+3. Run Docker container
+4. Run decoder script
+
+## Troubleshooting
+- Ensure Docker daemon is running
+- Verify port 8001 is not in use
+- Check Python version compatibility (3.8+ recommended)
 
 Task 2
 

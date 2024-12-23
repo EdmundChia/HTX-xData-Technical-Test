@@ -22,10 +22,7 @@ Create and activate Python virtual environment:
 python -m venv venv
 
 # Activate virtual environment
-# For Windows
 venv\Scripts\activate
-# For macOS/Linux
-source venv/bin/activate
 ```
 
 ## Install Required Packages
@@ -62,11 +59,71 @@ When you're done, deactivate the virtual environment:
 deactivate
 ```
 
-Task 3
+# Task 3
 
 Design.pdf in deployment-design folder
 
-Task 4
+# Task 4
+
+## Environment Setup
+Navigate to the elastic-backend folder
+```bash
+cd elastic-backend
+```
+
+Create and activate Python virtual environment:
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+venv\Scripts\activate
+```
+
+## Install Required Packages
+```bash
+pip install elasticsearch pandas python-dotenv
+```
+
+## Docker Commands
+Build and run the Docker container:
+```bash
+docker compose up -d
+```
+
+## Run index script
+Execute the index script in another terminal:
+```bash
+cd elastic-backend
+python cv-index.py
+```
+
+When you're done, deactivate the virtual environment:
+```bash
+deactivate
+```
+
+# Task 5
+
+## Environment Setup
+Navigate to the search-ui folder
+```bash
+cd search-ui
+```
+
+## Docker Commands
+Build and run the Docker container:
+```bash
+docker compose up -d
+```
+navigate to http://localhost:3000/ in your browser to view local deployment of elastic search-ui
+
+Clean Up Docker when done:
+```bash
+docker compose down
+cd ../elastic-backend
+docker compose down
+```
 
 cd ../elastic-backend
 

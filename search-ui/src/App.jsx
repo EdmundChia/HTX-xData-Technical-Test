@@ -16,10 +16,12 @@ import { Layout } from "@elastic/react-search-ui-views";
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import "./App.css";
 
-const elasticPassword = process.env.ELASTIC_PASSWORD;
-const host = process.env.HOST;
-const username = process.env.USERNAME;
+const elasticPassword = import.meta.env.ELASTIC_PASSWORD;
+const host = import.meta.env.HOST;
+const username = import.meta.env.USERNAME;
 
+// Check if the environment variables are loaded correctly (optional)
+console.log(elasticPassword, host, username);
 
 const connector = new ElasticsearchAPIConnector({
   host: host,

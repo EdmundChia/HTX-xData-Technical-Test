@@ -1,4 +1,4 @@
-# Task 2 Setup
+# Task 2
 
 ## Environment Setup
 Navigate to the asr folder
@@ -125,22 +125,14 @@ cd ../elastic-backend
 docker compose down
 ```
 
-cd ../elastic-backend
+# Task 6
 
-install elastic search if not installed
+# Task 7
 
-python -m pip install elasticsearch
+Deployment URL: 
 
-docker compose up -d 
+# Task 8
+essay.pdf in main folder
 
-<!-- docker cp elastic-backend-es01-1:/usr/share/elasticsearch/config/certs/ca/ca.crt ./ca.crt -->
-
-python cv-index.py
-
-Task 5
-
-cd ../search-ui
-
-docker-compose up --build
 
 navigate to http://localhost:3000/

@@ -1,6 +1,20 @@
-# Task 2 Setup Instructions
+# Task 2 Setup
 
 ## Environment Setup
+Navigate to the asr folder
+```bash
+cd asr
+```
+
+Download and unzip the files from this link: https://www.dropbox.com/scl/fi/i9yvfqpf7p8uye5o8k1sj/common_voice.zip?rlkey=lz3dtjuhekc3xw4jnoeoqy5yu&e=1&dl=0
+
+The file structure should look like this:
+```bash
+asr
+asr/common_voice
+asr/common_voice/cv-valid-dev.csv
+asr/common_voice//cv-valid-dev/cv-valid-dev/...mp3 files
+```
 
 Create and activate Python virtual environment:
 ```bash
@@ -36,16 +50,16 @@ Execute the CV decoder script:
 python cv-decode.py
 ```
 
-## Order of Operations
-1. Set up virtual environment and install packages
-2. Build Docker image
-3. Run Docker container
-4. Run decoder script
+Clean Up Docker when done:
+```bash
+docker stop asr-api
+docker rm asr-api
+```
 
-## Troubleshooting
-- Ensure Docker daemon is running
-- Verify port 8001 is not in use
-- Check Python version compatibility (3.8+ recommended)
+When you're done, deactivate the virtual environment:
+```bash
+deactivate
+```
 
 Task 2
 

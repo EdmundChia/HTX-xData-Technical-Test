@@ -6,3 +6,4 @@ common_voice.zip
 *.pem
 /aws-deploy
 .odt
+/asr/venv

@@ -98,7 +98,7 @@ cd elastic-backend
 python cv-index.py
 ```
 
-When you're done, deactivate the virtual environment:
+When you're done, deactivate the virtual environment but leave the docker container running for task 5:
 ```bash
 deactivate
 ```

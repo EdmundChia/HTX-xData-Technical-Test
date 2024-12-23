@@ -5,3 +5,4 @@ common_voice.zip
 /app-search-reference-ui-react-master
 *.pem
 /aws-deploy
+.odt

@@ -32,3 +32,14 @@ aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" "Name=
 # Get your public IP (save this)
 aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
 <!-- 3.0.139.66 -->
+
+# Move to the directory with your .pem file
+cd aws-deploy/my-ec2-key.pem
+
+# Set correct permissions for the key file
+icacls my-ec2-key.pem /inheritance:r
+<!-- icacls my-ec2-key.pem /grant:r "%USERNAME%":"(R)" -->
+icacls my-ec2-key.pem /grant:r edcyh@outlook.com:"(R)"
+
+# Connect (replace PUBLIC_IP)
+ssh -i my-ec2-key.pem ec2-user@3.0.139.66

@@ -3,3 +3,4 @@ common_voice.zip
 # *.env
 *.crt
 /app-search-reference-ui-react-master
+*.pem

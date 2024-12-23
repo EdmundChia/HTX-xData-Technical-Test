@@ -1,2 +1,0 @@
-I am uncertain as to what is the expected or correct method to deploy the ES solution so here is the reasoning for my design.
-I am deploying the react-vite elastic-search UI on AWS while the ES-backend node is hosted locally is due to my AWS account being at the free-tier so I only have access to the t2.micro instance that only has 1gb of ram. This is insufficient to run the containerized 2 node ES cluster on the my AWS instance (error 137 when docker compose up).

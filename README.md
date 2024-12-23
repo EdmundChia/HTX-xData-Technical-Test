@@ -133,6 +133,3 @@ Deployment URL:
 
 # Task 8
 essay.pdf in main folder
-
-
-navigate to http://localhost:3000/

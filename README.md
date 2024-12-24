@@ -129,7 +129,7 @@ docker compose down
 
 # Task 7
 
-Deployment URL: 
+Deployment URL: http://18.142.183.202:3000/
 
 # Task 8
 essay.pdf in main folder

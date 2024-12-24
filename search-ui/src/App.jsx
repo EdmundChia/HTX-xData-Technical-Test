@@ -56,10 +56,10 @@ const config = {
       "duration": {
         type: "range",
         ranges: [
-          { from: 0, to: 4, name: "0-4s" },
-          { from: 5, to: 9, name: "5-9s" },
-          { from: 10, to: 14, name: "10-14s" },
-          { from: 15, to: 19, name: "15-19s" },
+          { from: 0, to: 4.999, name: "0-4s" },
+          { from: 5, to: 9.999, name: "5-9s" },
+          { from: 10, to: 14.999, name: "10-14s" },
+          { from: 15, to: 19.999, name: "15-19s" },
           { from: 20, name: "20s+" }
         ]
       }

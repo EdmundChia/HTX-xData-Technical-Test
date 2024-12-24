@@ -21,7 +21,7 @@ const host = import.meta.env.VITE_HOST;
 const username = import.meta.env.VITE_USERNAME;
 
 // Check if the environment variables are loaded correctly (optional)
-console.log(elasticPassword, host, username);
+// console.log(elasticPassword, host, username);
 
 const connector = new ElasticsearchAPIConnector({
   host: host,

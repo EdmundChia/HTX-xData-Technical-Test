@@ -7,3 +7,4 @@ common_voice.zip
 .odt
 /asr/venv
 aws-deploy/temp cmd
+/aws-deploy/certs

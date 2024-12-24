@@ -1,0 +1,44 @@
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    volumes:
+      - esdata01:/usr/share/elasticsearch/data
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - "ES_JAVA_OPTS=-Xms128m -Xmx512m"
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - http.cors.enabled=true
+      - http.cors.allow-origin=${FRONTEND_URL}
+      - http.cors.allow-credentials=true
+      - http.cors.allow-headers=X-Requested-With, X-Auth-Token, Content-Type, Content-Length, Authorization, Access-Control-Allow-Headers, Accept, x-elastic-client-meta
+      - http.cors.allow-methods=OPTIONS,HEAD,GET,POST,PUT,DELETE
+      - "processors=1"
+      - xpack.security.enabled=true
+    mem_limit: ${MEM_LIMIT}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - elastic
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./ssl:/etc/nginx/ssl
+    networks:
+      - elastic
+    depends_on:
+      - es01
+
+networks:
+  elastic:
+
+volumes:
+  esdata01:
+    driver: local

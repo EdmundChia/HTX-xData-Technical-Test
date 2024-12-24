@@ -1,17 +1,32 @@
 services:
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs
+      - esdata01:/usr/share/elasticsearch/data
     ports:
       - ${ES_PORT}:9200
     environment:
       - node.name=es01
       - discovery.type=single-node
       - xpack.security.enabled=true
-      - "ES_JAVA_OPTS=-Xms128m -Xmx512m"  # Absolute minimal memory
+      - "ES_JAVA_OPTS=-Xms128m -Xmx512m"
       - cluster.routing.allocation.disk.threshold_enabled=false
       - http.cors.enabled=true
-      - http.cors.allow-origin="*"
-      - "processors=1"  # Limit CPU usage
+      - "http.cors.allow-origin=*"
+      - "http.cors.allow-methods=OPTIONS,HEAD,GET,POST,PUT,DELETE"
+      - "http.cors.allow-headers=*"
+      - http.cors.allow-credentials=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.http.ssl.key=certs/es01/es01.key
+      - xpack.security.http.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/es01/es01.key
+      - xpack.security.transport.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - "processors=1"
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
     mem_limit: ${MEM_LIMIT}
     ulimits:
@@ -21,5 +36,7 @@ services:
     restart: always
 
 volumes:
+  certs:
+    driver: local
   esdata01:
     driver: local

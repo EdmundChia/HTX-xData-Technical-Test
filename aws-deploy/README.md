@@ -17,12 +17,8 @@ conda activate myenv
 
 # Create virtual environment
 python3.9 -m venv myenv
-
 # Activate the environment (Windows)
 myenv\Scripts\activate
-
-# Activate the environment (macOS/Linux)
-source myenv/bin/activate
 
 pip install elasticsearch==7.10.0 pandas python-dotenv
 

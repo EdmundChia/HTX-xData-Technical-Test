@@ -125,9 +125,7 @@ cd ../elastic-backend
 docker compose down
 ```
 
-# Task 6
-
-# Task 7
+# Task 6 and Task 7
 
 Deployment URL: http://18.142.183.202:3000/
 

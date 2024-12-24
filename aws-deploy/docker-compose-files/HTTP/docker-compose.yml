@@ -7,11 +7,14 @@ services:
       - node.name=es01
       - discovery.type=single-node
       - xpack.security.enabled=true
-      - "ES_JAVA_OPTS=-Xms128m -Xmx512m"  # Absolute minimal memory
+      - "ES_JAVA_OPTS=-Xms128m -Xmx512m"
       - cluster.routing.allocation.disk.threshold_enabled=false
       - http.cors.enabled=true
-      - http.cors.allow-origin="*"
-      - "processors=1"  # Limit CPU usage
+      - http.cors.allow-origin=http://18.142.183.202:3000
+      - http.cors.allow-credentials=true
+      - http.cors.allow-headers=Authorization,X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Accept,x-elastic-client-meta
+      - http.cors.allow-methods=OPTIONS,HEAD,GET,POST,PUT,DELETE
+      - "processors=1"
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
     mem_limit: ${MEM_LIMIT}
     ulimits:

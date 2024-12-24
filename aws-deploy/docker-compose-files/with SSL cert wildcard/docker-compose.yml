@@ -21,9 +21,15 @@ services:
           "instances:\n"\
           "  - name: es01\n"\
           "    dns:\n"\
-          "      - '*.example.com'\n"  # Wildcard DNS for any subdomain
+          "      - es01\n"\
+          "      - localhost\n"\
+          "      - es02\n"\
+          "      - es03\n"\
+          "      - my-domain.com\n"\
           "    ip:\n"\
-          "      - 127.0.0.1\n"  # Local IP, can add other IPs if needed
+          "      - 127.0.0.1\n"\
+          "      - 192.168.1.100\n"\
+          "      - 192.168.1.101\n"\
           > config/certs/instances.yml;
           bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip --in config/certs/instances.yml --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key;
           unzip config/certs/certs.zip -d config/certs;

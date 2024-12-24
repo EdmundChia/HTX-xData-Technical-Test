@@ -16,9 +16,9 @@ import { Layout } from "@elastic/react-search-ui-views";
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import "./App.css";
 
-const elasticPassword = import.meta.env.ELASTIC_PASSWORD;
-const host = import.meta.env.HOST;
-const username = import.meta.env.USERNAME;
+const elasticPassword = import.meta.env.VITE_ELASTIC_PASSWORD;
+const host = import.meta.env.VITE_HOST;
+const username = import.meta.env.VITE_USERNAME;
 
 // Check if the environment variables are loaded correctly (optional)
 console.log(elasticPassword, host, username);

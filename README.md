@@ -1,5 +1,16 @@
 # Task 2
 
+## Docker Commands
+Build the Docker image:
+```bash
+docker build -t asr-api .
+```
+
+Run the Docker container:
+```bash
+docker run --name asr-api -p 8001:8001 asr-api
+```
+
 ## Environment Setup
 Navigate to the asr folder
 ```bash
@@ -28,17 +39,6 @@ venv\Scripts\activate
 ## Install Required Packages
 ```bash
 pip install flask transformers librosa requests torch pandas
-```
-
-## Docker Commands
-Build the Docker image:
-```bash
-docker build -t asr-api .
-```
-
-Run the Docker container:
-```bash
-docker run --name asr-api -p 8001:8001 asr-api
 ```
 
 ## Run Decoder Script

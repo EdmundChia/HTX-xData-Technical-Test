@@ -7,3 +7,4 @@ common_voice.zip
 /aws-deploy
 .odt
 /asr/venv
+/elastic-backend/venv

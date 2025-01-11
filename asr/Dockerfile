@@ -5,7 +5,7 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Copy only the necessary files: asr_api.py and requirements.txt
-COPY asr_api.py /app/asr/
+COPY asr-api.py /app/asr/
 COPY requirements.txt /app/
 
 # Install dependencies
@@ -18,4 +18,4 @@ EXPOSE 8001
 ENV PYTHONUNBUFFERED=1
 
 # Run asr_api.py when the container launches
-CMD ["python", "asr/asr_api.py"]
+CMD ["python", "asr/asr-api.py"]

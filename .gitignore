@@ -8,3 +8,4 @@ common_voice.zip
 /asr/venv
 aws-deploy/temp cmd
 /aws-deploy/certs
+/elastic-backend/venv
